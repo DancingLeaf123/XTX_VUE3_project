@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <nav class="app-topnav">
+  <nav class="app-topnav">  
     <div class="container">
       <ul>
         <template v-if="true">
