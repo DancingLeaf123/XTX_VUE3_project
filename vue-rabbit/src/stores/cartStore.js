@@ -17,9 +17,20 @@ export const useCartStore = defineStore(
         cartList.value.push(goods);
       }
     };
+
+    // 删除购物车
+    const delCart = (skuId) => {
+      // 思路
+      // 下标，splice
+      const idx = cartList.value.findIndex((item) => {
+        skuId = item.skuId;
+      });
+      cartList.value.splice(idx, 1);
+    };
     return {
       cartList,
       addCart,
+      delCart
     };
   },
   {
