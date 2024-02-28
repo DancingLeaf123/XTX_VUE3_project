@@ -49,9 +49,9 @@ export const useCartStore = defineStore(
     };
 
     // 清除购物车
-    const clearCart = () => { 
+    const clearCart = () => {
       cartList.value = [];
-    }
+    };
 
     // 单选功能
     const singleCheck = (skuId, selected) => {
@@ -99,6 +99,7 @@ export const useCartStore = defineStore(
       addCart,
       delCart,
       singleCheck,
+      updateNewList,
     };
   },
   {
