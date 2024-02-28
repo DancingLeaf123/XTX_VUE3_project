@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref,computed } from "vue";
+import { ref, computed } from "vue";
 
 export const useCartStore = defineStore(
   "cart",
@@ -28,6 +28,12 @@ export const useCartStore = defineStore(
       cartList.value.splice(idx, 1);
     };
 
+    // 单选功能
+    const singleCheck = (skuId, selected) => {
+      const item = cartList.value.find((item) => item.skuId === skuId);
+      item.selected = selected;
+    };
+
     const allCount = computed(() =>
       cartList.value.reduce((a, c) => a + c.count, 0)
     );
@@ -40,6 +46,7 @@ export const useCartStore = defineStore(
       allPrice,
       addCart,
       delCart,
+      singleCheck
     };
   },
   {
