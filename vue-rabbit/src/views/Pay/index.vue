@@ -1,7 +1,15 @@
 <script setup>
-const payInfo = {}
+import { getOrderAPI } from "@/apis/pay";
+import { useRoute } from "vue-router";
+import { ref, onMounted } from "vue";
+const payInfo = ref({});
+const route = useRoute();
+const payInfo = async () => {
+  const res = await getOrderAPI(route.query.id);
+  payInfo.value = res.result;
+};
+onMounted(() => payInfo());
 </script>
-
 
 <template>
   <div class="xtx-pay-page">
@@ -45,7 +53,6 @@ const payInfo = {}
 }
 
 .pay-info {
-
   background: #fff;
   display: flex;
   align-items: center;
@@ -121,11 +128,13 @@ const payInfo = {}
     }
 
     &.alipay {
-      background: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7b6b02396368c9314528c0bbd85a2e06.png) no-repeat center / contain;
+      background: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7b6b02396368c9314528c0bbd85a2e06.png)
+        no-repeat center / contain;
     }
 
     &.wx {
-      background: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c66f98cff8649bd5ba722c2e8067c6ca.jpg) no-repeat center / contain;
+      background: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c66f98cff8649bd5ba722c2e8067c6ca.jpg)
+        no-repeat center / contain;
     }
   }
 }
