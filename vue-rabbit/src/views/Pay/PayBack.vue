@@ -1,17 +1,20 @@
 <script setup>
-import { getOrderAPI } from '@/apis/pay';
-import { useRoute} from 'vue-router'
-import { ref, onMounted} from 'vue'
-const route = useRoute()
-const OrderInfo = ref({})
-const getOrderInfo = async ()=>{
-    const res = await getOrderAPI(route.query.orderId)
-    OrderInfo.value = res.result
-}
-onMounted(()=>getOrderInfo())
+import { getOrderAPI } from "@/apis/pay";
+import { useRoute } from "vue-router";
+import { ref, onMounted } from "vue";
+
+const route = useRoute();
+const OrderInfo = ref({});
+const getOrderInfo = async () => {
+  const res = await getOrderAPI(route.query.orderId);
+  OrderInfo.value = res.result;
+
+};
+onMounted(() => getOrderInfo());
 </script>
 
 <template>
+    
   <div class="xtx-pay-page">
     <div class="container">
       <!-- 支付结果 -->
@@ -22,11 +25,13 @@ onMounted(()=>getOrderInfo())
         ></span>
         <span class="iconfont icon-shanchu red" v-else></span>
         <p class="tit">
-          支付{{ $route.query.payResult === 'true' ? '成功' :'失败'}}
+          支付{{ $route.query.payResult === "true" ? "成功" : "失败" }}
         </p>
         <p class="tip">我们将尽快为您发货，收货期间请保持手机畅通</p>
         <p>支付方式：<span>支付宝</span></p>
-        <p>支付金额：<span>¥{{OrderInfo.payMoney?.toFixed(2)}}</span></p>
+        <p>
+          支付金额：<span>¥{{ OrderInfo.payMoney?.toFixed(2) }}</span>
+        </p>
         <div class="btn">
           <el-button type="primary" style="margin-right: 20px"
             >查看订单</el-button
